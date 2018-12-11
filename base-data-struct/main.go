@@ -4,11 +4,31 @@
 */
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
+
+func Slice()  {
+
+	s1 := make([]int,13,15)
+	for i,v := range s1{
+
+		fmt.Println(i)
+		//time.Sleep(time.Second)
+		fmt.Println(v)
+
+	}
+
+
+
+
+}
+
+
 
 func main() {
 
-	m1 := make(map[string]interface{})
+	/*m1 := make(map[string]interface{})
 
 	m1["1"] = 1
 	m1["2"] = "alex"
@@ -23,6 +43,7 @@ func main() {
 	}
 
 	fmt.Println(name)
-	fmt.Println(age)
+	fmt.Println(age)*/
+	Slice()
 
 }
