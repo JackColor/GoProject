@@ -19,7 +19,7 @@ func reverserOne(str string) {
 
 }
 
-func reverse(str string) {
+func inversion(str string) {
 	var res string
 	length := len(str)
 	for i := 0; i < length; i++ {
