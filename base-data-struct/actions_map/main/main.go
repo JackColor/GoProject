@@ -18,7 +18,6 @@ func Testmap() {
 
 		key := fmt.Sprintf("stu%d", i+1)
 		val := rand.Intn(1000)
-
 		m1[key] = val
 
 	}
@@ -32,17 +31,10 @@ func Testmap() {
 
 	}
 
-
-
-
-
-
-
 }
 
 func main() {
 	rand.Seed(time.Now().UnixNano())
-
 	Testmap()
 
 }
