@@ -4,7 +4,7 @@
 */
 package handler
 
-type logInterface interface {
+type LogInterface interface {
 	Init()
 	SetLevel(level int)
 	Debug(format string, args ...interface{})
@@ -15,12 +15,5 @@ type logInterface interface {
 	Fatal(format string, args ...interface{})
 	Close()
 }
-
-
-
-
-
-
-
 
 

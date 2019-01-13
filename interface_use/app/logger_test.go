@@ -11,12 +11,24 @@ import (
 
 func TestLogger(t *testing.T) {
 	///Users/mac/go/src/study/interface_use
-	log := handler.NewFileLog("/Users/mac/go/src/study/interface_use", "test")
+	//log := handler.NewFileLog("/Users/mac/go/src/study/interface_use", "test")
+	//
+	//log.SetLevel(handler.Debug)
+	//
+	//log.Debug("test %s", "hello")
+	//
+	//log.Error("errors msg about is %s", "errors")
+
+}
+
+func TestConsoleLogger(t *testing.T) {
+
+	log := handler.NewConsoleLog(handler.Debug)
 
 	log.SetLevel(handler.Debug)
 
-	log.Debug("test %s\n", "hello")
+	log.Debug("test %s", "hello")
 
-	log.Error("errors msg about is %s\n", "errors")
+	log.Error("errors msg about is %s", "errors")
 
 }
