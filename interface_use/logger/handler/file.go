@@ -1,7 +1,7 @@
 /*
 *Auth: JackColor
 *Date: 2019/1/12 下午7:47
-*/
+ */
 package handler
 
 import (
@@ -22,20 +22,6 @@ type FileLog struct {
 	LogSplitSize int64
 	CurrentHour  int
 }
-
-// 返回接口
-//func NewFileLog(path, filename string) logInterface {
-//	//返回 logInterface 的接口对象
-//	logger := &FileLog{
-//		path:     path,
-//		filename: filename,
-//		level:    Debug,
-//	}
-//
-//	logger.Init()
-//	return logger
-//
-//}
 
 func NewFileLog(config map[string]string) (log LogInterface, err error) {
 	//返回 logInterface 的接口对象
@@ -137,12 +123,9 @@ func (f *FileLog) SetLevel(level int) {
 	// 设置 log 级别
 	if level < Debug || level > Fatal {
 		f.level = Info
-
 		return
 	}
-
 	f.level = level
-
 }
 
 func (f *FileLog) Debug(format string, args ...interface{}) {
@@ -230,7 +213,7 @@ func (f *FileLog) splitWithHour(errorFatal bool) {
 
 	currentHour := now.Hour()
 
-	if currentHour == f.CurrentHour{
+	if currentHour == f.CurrentHour {
 		//不要备份....
 		return
 	}
@@ -238,31 +221,31 @@ func (f *FileLog) splitWithHour(errorFatal bool) {
 	f.CurrentHour = currentHour
 	var backupName string
 	var oldFileName string
-	if errorFatal{
-		backupName = fmt.Sprintf("%s/%s.log.wf_%04d%02d%02%d02%d",f.path,f.filename,now.Year(),now.Month(),now.Day(),currentHour)
-		oldFileName  =fmt.Sprintf("%s/%s.log.wf", f.path, f.filename)
-	}else {
-		backupName = fmt.Sprintf("%s/%s.log_%04d%02d%02%d02%d",f.path,f.filename,now.Year(),now.Month(),now.Day(),currentHour)
-		oldFileName  =fmt.Sprintf("%s/%s.log", f.path, f.filename)
-		}
+	if errorFatal {
+		backupName = fmt.Sprintf("%s/%s.log.wf_%04d%02d%02%d02%d", f.path, f.filename, now.Year(), now.Month(), now.Day(), currentHour)
+		oldFileName = fmt.Sprintf("%s/%s.log.wf", f.path, f.filename)
+	} else {
+		backupName = fmt.Sprintf("%s/%s.log_%04d%02d%02%d02%d", f.path, f.filename, now.Year(), now.Month(), now.Day(), currentHour)
+		oldFileName = fmt.Sprintf("%s/%s.log", f.path, f.filename)
+	}
 
 	file := f.file
-	if errorFatal{
+	if errorFatal {
 		file = f.errors
 	}
 	file.Close()
 
-	os.Rename(oldFileName,backupName)
+	os.Rename(oldFileName, backupName)
 
 	file, err := os.OpenFile(oldFileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 
-	if err!=nil{
+	if err != nil {
 		return
 	}
 
-	if errorFatal{
+	if errorFatal {
 		f.errors = file
-	}else {
+	} else {
 		f.file = file
 	}
 
@@ -270,22 +253,20 @@ func (f *FileLog) splitWithHour(errorFatal bool) {
 func (f *FileLog) splitWithSize(errorFatal bool) {
 	// 大小分割
 	file := f.file
-	if errorFatal{
+	if errorFatal {
 		file = f.errors
 	}
 
-	fileInfo,err :=file.Stat()
-	if err!=nil{
+	fileInfo, err := file.Stat()
+	if err != nil {
 		return
 	}
 	fileSize := fileInfo.Size()
 
-
 	fmt.Println(fileSize)
 	fmt.Println(f.LogSplitSize)
 
-
-	if fileSize <=  f.LogSplitSize{
+	if fileSize <= f.LogSplitSize {
 		//小 返回
 		fmt.Println("小 返回")
 		return
@@ -295,33 +276,32 @@ func (f *FileLog) splitWithSize(errorFatal bool) {
 	now := time.Now()
 	var backupName string
 	var oldFileName string
-	if errorFatal{
-		backupName = fmt.Sprintf("%s/%s.log.%04d%02d%02d%02d%02d",f.path,f.filename,now.Year(),now.Month(),now.Day(),now.Hour(),now.Minute())
-		oldFileName  =fmt.Sprintf("%s/%s.log.wf", f.path, f.filename)
-	}else {
-		backupName = fmt.Sprintf("%s/%s.log_%04d%02d%02d%02d%02d",f.path,f.filename,now.Year(),now.Month(),now.Day(),now.Hour(),now.Minute())
-		oldFileName  =fmt.Sprintf("%s/%s.log", f.path, f.filename)
+	if errorFatal {
+		backupName = fmt.Sprintf("%s/%s.log.%04d%02d%02d%02d%02d", f.path, f.filename, now.Year(), now.Month(), now.Day(), now.Hour(), now.Minute())
+		oldFileName = fmt.Sprintf("%s/%s.log.wf", f.path, f.filename)
+	} else {
+		backupName = fmt.Sprintf("%s/%s.log_%04d%02d%02d%02d%02d", f.path, f.filename, now.Year(), now.Month(), now.Day(), now.Hour(), now.Minute())
+		oldFileName = fmt.Sprintf("%s/%s.log", f.path, f.filename)
 	}
-
 
 	// -----///
 	replaceFile := f.file
-	if errorFatal{
+	if errorFatal {
 		file = f.errors
 	}
 	replaceFile.Close()
 
-	os.Rename(oldFileName,backupName)
+	os.Rename(oldFileName, backupName)
 
 	replaceFile, err = os.OpenFile(oldFileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 
-	if err!=nil{
+	if err != nil {
 		return
 	}
 
-	if errorFatal{
+	if errorFatal {
 		f.errors = replaceFile
-	}else {
+	} else {
 		f.file = replaceFile
 	}
 
@@ -333,11 +313,9 @@ func (f *FileLog) checkSplitFlag(errorFatal bool) {
 	if f.LogSplitType == SplitWithHour {
 
 		f.splitWithHour(errorFatal)
-
 	} else {
 
 		f.splitWithSize(errorFatal)
-
 	}
 
 }
