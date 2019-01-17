@@ -15,15 +15,12 @@ func writer_utils() {
 
 	var s string = "hello world"
 
-	e:=ioutil.WriteFile("./test.dat", []byte(s), 0777)
+	e := ioutil.WriteFile("./test.dat", []byte(s), 0777)
 
-	if e!=nil{
+	if e != nil {
 
 		return
 	}
-
-
-
 
 }
 
@@ -62,6 +59,7 @@ func Wirter() {
 	var s string = "hello world\n"
 
 	n, err := file.Write([]byte(s))
+
 	file.WriteString(s)
 	if err != nil {
 		fmt.Println("write content failed", err)
