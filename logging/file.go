@@ -8,14 +8,19 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"time"
 )
 
 type LogFile struct {
-	Path   string
-	Name   string
-	Level  int
-	File   *os.File
-	Error  *os.File
+	Path        string
+	Name        string
+	Level       int
+	LogType     string
+	LogSplitFre int64
+	Time        int
+	File        *os.File
+	Error       *os.File
+
 	LogMsg chan *LogMessage
 }
 
@@ -50,11 +55,35 @@ func NewLogFile(config map[string]string) (Logger LoggerInterface, err error) {
 		chanSize = 50000
 	}
 
+	LogType, ok := config["log_type"]
+
+	if !ok {
+		LogType = "hour"
+	}
+
+	var LogSplitSize int
+
+	if LogType == "size" {
+		splitFre, ok := config["log_size"]
+		if !ok {
+			splitFre = "104857600"
+		}
+
+		LogSplitSize, err = strconv.Atoi(splitFre)
+		if err != nil {
+			LogSplitSize = 104857600
+		}
+
+	}
+
 	Logger = &LogFile{
-		Path:   path,
-		Name:   name,
-		Level:  levelNum,
-		LogMsg: make(chan *LogMessage, chanSize),
+		Path:        path,
+		Name:        name,
+		Level:       levelNum,
+		LogType:     LogType,
+		LogSplitFre: int64(LogSplitSize),
+		Time:        time.Now().Hour(),
+		LogMsg:      make(chan *LogMessage, chanSize),
 	}
 
 	Logger.Init()
@@ -80,7 +109,9 @@ func (f *LogFile) Init() {
 
 	}
 	f.Error = ErrorFile
+
 	go f.writeLogInfo()
+
 	return
 }
 
@@ -93,12 +124,151 @@ func (f *LogFile) SetLevel(level int) {
 
 }
 
+func (f *LogFile) TimeType() (err error) {
+
+	Now := time.Now()
+	currentHour := Now.Hour()
+	if currentHour == f.Time {
+		fmt.Println("time is same hahahahha")
+		return
+	}
+
+	f.Time = currentHour
+
+	//当前文件
+	currentNormalFileName := fmt.Sprintf("%s/%s.log", f.Path, f.Name)
+	// 备份文件
+	NormalFileName := fmt.Sprintf("%s/%s.log_%d_%d", f.Path, f.Name, Now.Hour(), Now.Minute())
+
+	currentErrorFileName := fmt.Sprintf("%s/%s.error.log", f.Path, f.Name)
+	ErrorFileName := fmt.Sprintf("%s/%s.error.log.%d_%d", f.Path, f.Name, Now.Hour(), Now.Minute())
+
+	err = f.File.Close() //关闭正常文件
+	if err != nil {
+		err = fmt.Errorf("close the file failed in Time Type when close the normal file,err:%s", err)
+
+		return
+	}
+	err = f.Error.Close() //关闭 错误文件
+	if err != nil {
+
+		err = fmt.Errorf("close the file failed in Time Type when close the error file,err:%s", err)
+
+		return
+	}
+
+	os.Rename(currentNormalFileName, NormalFileName)
+	os.Rename(currentErrorFileName, ErrorFileName)
+
+	//打开正常 文件
+	NorFile, err := os.OpenFile(currentNormalFileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0755)
+	if err != nil {
+		err = fmt.Errorf("open the file failed in Time Type when open the normal file,err:%s", err)
+		return
+	}
+
+	// 打开错误文件
+	ErrorFile, err := os.OpenFile(currentErrorFileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0755)
+	if err != nil {
+		err = fmt.Errorf("open the file failed in Time Type when open the error file,err:%s", err)
+
+		return
+	}
+
+	f.File = NorFile
+
+	f.Error = ErrorFile
+
+	return
+}
+
+func (f *LogFile) SizeType() (err error) {
+
+	//文件大小分割
+	//拿到 当前文件的大小
+	FileInfo, err := f.File.Stat()
+
+	if err != nil {
+		err = fmt.Errorf("get the file size from the file failed err:%s", err)
+		return
+	}
+
+	Now := time.Now()
+
+	currentNormalFileSize := FileInfo.Size()
+
+	if currentNormalFileSize < f.LogSplitFre {
+		return
+	} else {
+		currentNormalFileName := fmt.Sprintf("%s/%s.error.log", f.Path, f.Name)
+		NormalFileName := fmt.Sprintf("%s/%s.log_%d_%d_%d", f.Path, f.Name, Now.Hour(), Now.Minute(), Now.Second())
+		NorFile, Normalerr := os.OpenFile(currentNormalFileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0755)
+		if Normalerr != nil {
+			Normalerr = fmt.Errorf("open the file failed in Time Type when open the normal file,err:%s", err)
+			err = Normalerr
+			return
+		}
+
+		f.File.Close()
+		os.Rename(currentNormalFileName, NormalFileName)
+		f.File = NorFile
+
+	}
+
+	ErrorFileInfo, err := f.Error.Stat()
+	if err != nil {
+
+		return
+	}
+
+	currentErrorFileSize := ErrorFileInfo.Size()
+
+	if currentErrorFileSize < f.LogSplitFre {
+		return
+	} else {
+
+		currentErrorFileName := fmt.Sprintf("%s/%s.log", f.Path, f.Name)
+		ErrorFileName := fmt.Sprintf("%s/%s.error.log.%d_%d", f.Path, f.Name, Now.Hour(), Now.Minute())
+		ErrorFile, Errorerr := os.OpenFile(currentErrorFileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0755)
+		if Errorerr != nil {
+			Errorerr = fmt.Errorf("open the file failed in Time Type when open the error file,err:%s", err)
+			err= Errorerr
+			return
+		}
+
+		f.Error.Close()
+
+		os.Rename(currentErrorFileName, ErrorFileName)
+
+		f.Error = ErrorFile
+
+	}
+
+	return
+
+}
+
+func (f *LogFile) ValidateType() {
+	SplitType := f.LogType
+
+	switch SplitType {
+	case LogWithHour:
+		f.TimeType()
+	case LogWithSize:
+		f.SizeType()
+	}
+
+}
+
 func (f *LogFile) writeLogInfo() {
 	for message := range f.LogMsg {
 		file := f.File
 		if message.ErrorFatal {
 			file = f.Error
 		}
+		//分割 日志
+
+		f.ValidateType()
 
 		fmt.Fprintf(file, message.Msg)
 

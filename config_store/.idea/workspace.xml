@@ -2,31 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="abdbb797-ce85-4e9a-a668-51124267c2ba" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../_test/demo/example.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../_test/do_bench/do_bench_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../_test/do_test/do_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/parser/parser.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/parser/parser_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../json_/main/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../logging/.idea/logging.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../logging/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../logging/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../logging/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../logging/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../logging/console.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../logging/constant.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../logging/file.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../logging/interface.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../logging/logger.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../logging/logging_test/logging_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../logging/utils.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../reflect_/main/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../reflect_/method_reflect/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../reflect_/tag_reflect/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../base-data-struct/Insert/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../base-data-struct/Insert/main/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wirte_seinor/write/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../wirte_seinor/write/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_more_process/channel_/chan_close/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_more_process/channel_/chan_range/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_more_process/channel_/no_buff/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_more_process/channel_/read-get-only/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_more_process/runtime/main/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_more_process/test_one/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_more_process/wait_group/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_more_process/waitgroup0/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_more_process/wokepool-relize/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../logging/.idea/dictionaries/mac.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_test/demo/example.go" beforeDir="false" afterPath="$PROJECT_DIR$/../_test/demo/example.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logging/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../logging/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logging/file.go" beforeDir="false" afterPath="$PROJECT_DIR$/../logging/file.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logging/log_store/demo.error.log" beforeDir="false" afterPath="$PROJECT_DIR$/../logging/log_store/demo.error.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logging/log_store/demo.log" beforeDir="false" afterPath="$PROJECT_DIR$/../logging/log_store/demo.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,10 +29,11 @@
     <session id="-720596012">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -93,7 +85,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parser/parser.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
+            <state relative-caret-position="1760">
               <caret line="116" column="39" selection-start-line="116" selection-start-column="39" selection-end-line="116" selection-end-column="39" />
             </state>
           </provider>
@@ -102,7 +94,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file:///usr/local/Cellar/go/1.11.1/libexec/src/reflect/type.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
+            <state relative-caret-position="420">
               <caret line="150" column="22" selection-start-line="150" selection-start-column="22" selection-end-line="150" selection-end-column="22" />
             </state>
           </provider>
@@ -137,11 +129,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="47" />
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="y" value="23" />
-    <option name="width" value="1233" />
-    <option name="height" value="777" />
+    <option name="width" value="1280" />
+    <option name="height" value="745" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -151,7 +142,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -159,15 +149,11 @@
               <item name="config_store" type="b2602c69:ProjectViewProjectNode" />
               <item name="config_store" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="config_store" type="b2602c69:ProjectViewProjectNode" />
-              <item name="config_store" type="462c0819:PsiDirectoryNode" />
-              <item name="parser" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -195,10 +181,10 @@
     </option>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="745" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.175" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17741935" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -210,7 +196,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.29952458" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -232,6 +218,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/parser/parser_test.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="640">
@@ -241,21 +234,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/parser/parser.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
+        <state relative-caret-position="1760">
           <caret line="116" column="39" selection-start-line="116" selection-start-column="39" selection-end-line="116" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
     <entry file="file:///usr/local/Cellar/go/1.11.1/libexec/src/reflect/type.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
+        <state relative-caret-position="420">
           <caret line="150" column="22" selection-start-line="150" selection-start-column="22" selection-end-line="150" selection-end-column="22" />
         </state>
       </provider>
