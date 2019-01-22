@@ -16,17 +16,16 @@ func TestFileLog(t *testing.T) {
 	conf["log_path"] = "/Users/mac/go/src/study/logging/log_store"
 	conf["log_name"] = "demo"
 	conf["level"] = "DEBUG"
-
-	err := logging.Init("file",conf)
+	conf["log_type"] = "size"
+	conf["log_size"] = "1000"
+	err := logging.Init("file", conf)
 	if err != nil {
 		fmt.Println(err)
 	}
 	for {
-
-		logging.Debug("this is the info log %s","info")
-		logging.Error("this is the errors log %s","errors")
+		logging.Debug("this is the info log %s", "info")
+		logging.Error("this is the errors log %s", "errors")
 		time.Sleep(time.Second)
 	}
-
 
 }

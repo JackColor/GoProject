@@ -2,22 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="abdbb797-ce85-4e9a-a668-51124267c2ba" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../_more_process/channel_/chan_close/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../_more_process/channel_/chan_range/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../_more_process/channel_/no_buff/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../_more_process/channel_/read-get-only/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../_more_process/runtime/main/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../_more_process/test_one/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../_more_process/wait_group/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../_more_process/waitgroup0/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../_more_process/wokepool-relize/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../logging/.idea/dictionaries/mac.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../_test/demo/example.go" beforeDir="false" afterPath="$PROJECT_DIR$/../_test/demo/example.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../select-example/read-select.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../logging/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../logging/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../logging/file.go" beforeDir="false" afterPath="$PROJECT_DIR$/../logging/file.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../logging/log_store/demo.error.log" beforeDir="false" afterPath="$PROJECT_DIR$/../logging/log_store/demo.error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../logging/log_store/demo.log" beforeDir="false" afterPath="$PROJECT_DIR$/../logging/log_store/demo.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logging/log_store/demo.error.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logging/log_store/demo.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../logging/logging_test/logging_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/../logging/logging_test/logging_test.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -182,7 +173,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="745" extended-state="1" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17741935" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />

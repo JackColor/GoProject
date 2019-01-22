@@ -138,18 +138,21 @@ func (f *LogFile) TimeType() (err error) {
 	//当前文件
 	currentNormalFileName := fmt.Sprintf("%s/%s.log", f.Path, f.Name)
 	// 备份文件
+
 	NormalFileName := fmt.Sprintf("%s/%s.log_%d_%d", f.Path, f.Name, Now.Hour(), Now.Minute())
 
 	currentErrorFileName := fmt.Sprintf("%s/%s.error.log", f.Path, f.Name)
 	ErrorFileName := fmt.Sprintf("%s/%s.error.log.%d_%d", f.Path, f.Name, Now.Hour(), Now.Minute())
 
 	err = f.File.Close() //关闭正常文件
+
 	if err != nil {
 		err = fmt.Errorf("close the file failed in Time Type when close the normal file,err:%s", err)
 
 		return
 	}
 	err = f.Error.Close() //关闭 错误文件
+
 	if err != nil {
 
 		err = fmt.Errorf("close the file failed in Time Type when close the error file,err:%s", err)
@@ -158,6 +161,7 @@ func (f *LogFile) TimeType() (err error) {
 	}
 
 	os.Rename(currentNormalFileName, NormalFileName)
+
 	os.Rename(currentErrorFileName, ErrorFileName)
 
 	//打开正常 文件
@@ -200,8 +204,12 @@ func (f *LogFile) SizeType() (err error) {
 	if currentNormalFileSize < f.LogSplitFre {
 		return
 	} else {
-		currentNormalFileName := fmt.Sprintf("%s/%s.error.log", f.Path, f.Name)
+		currentNormalFileName := fmt.Sprintf("%s/%s.log", f.Path, f.Name)
 		NormalFileName := fmt.Sprintf("%s/%s.log_%d_%d_%d", f.Path, f.Name, Now.Hour(), Now.Minute(), Now.Second())
+
+		f.File.Close()
+		os.Rename(currentNormalFileName, NormalFileName)
+
 		NorFile, Normalerr := os.OpenFile(currentNormalFileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0755)
 		if Normalerr != nil {
 			Normalerr = fmt.Errorf("open the file failed in Time Type when open the normal file,err:%s", err)
@@ -209,8 +217,6 @@ func (f *LogFile) SizeType() (err error) {
 			return
 		}
 
-		f.File.Close()
-		os.Rename(currentNormalFileName, NormalFileName)
 		f.File = NorFile
 
 	}
@@ -227,18 +233,20 @@ func (f *LogFile) SizeType() (err error) {
 		return
 	} else {
 
-		currentErrorFileName := fmt.Sprintf("%s/%s.log", f.Path, f.Name)
-		ErrorFileName := fmt.Sprintf("%s/%s.error.log.%d_%d", f.Path, f.Name, Now.Hour(), Now.Minute())
-		ErrorFile, Errorerr := os.OpenFile(currentErrorFileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0755)
-		if Errorerr != nil {
-			Errorerr = fmt.Errorf("open the file failed in Time Type when open the error file,err:%s", err)
-			err= Errorerr
-			return
-		}
+		currentErrorFileName := fmt.Sprintf("%s/%s.error.log", f.Path, f.Name)
+		ErrorFileName := fmt.Sprintf("%s/%s.error.log.%d_%d_%d", f.Path, f.Name, Now.Hour(), Now.Minute(), Now.Second())
 
 		f.Error.Close()
 
 		os.Rename(currentErrorFileName, ErrorFileName)
+
+		ErrorFile, Errorerr := os.OpenFile(currentErrorFileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0755)
+
+		if Errorerr != nil {
+			Errorerr = fmt.Errorf("open the file failed in Time Type when open the error file,err:%s", err)
+			err = Errorerr
+			return
+		}
 
 		f.Error = ErrorFile
 
