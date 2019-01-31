@@ -14,7 +14,7 @@ func Produce(c chan int) {
 	for i := 0; i < 50; i++ {
 
 		c <- i
-		time.Sleep(time.Second)
+		time.Sleep(time.Millisecond)
 
 	}
 	//放进去关闭

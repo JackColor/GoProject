@@ -367,6 +367,7 @@ func (f *LogFile) LogWarn(format string, args ... interface{}) {
 
 	}
 }
+
 func (f *LogFile) LogErrors(format string, args ... interface{}) {
 
 	//fmt.Println("errors msg start.....")
